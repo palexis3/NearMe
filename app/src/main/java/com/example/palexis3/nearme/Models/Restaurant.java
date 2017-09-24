@@ -4,9 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 import org.parceler.Parcel;
 
+import java.util.ArrayList;
+
 /**
-  Restaurant represents restaurant info sent back from the json response
-  with more details.
+  Restaurant POJO represents all necessary properties and attributes for a single restaurant.
  */
 
 @Parcel
