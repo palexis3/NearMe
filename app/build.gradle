@@ -48,7 +48,12 @@ dependencies {
     // Glide - Image loading
     compile 'com.github.bumptech.glide:glide:3.8.0'
 
+    // Logging
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+
+    // Google map services
+    compile 'com.google.android.gms:play-services-maps:11.0.1'
+    compile 'com.google.android.gms:play-services-location:11.0.1'
 
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'

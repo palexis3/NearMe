@@ -23,6 +23,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+
 public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.ViewHolder> {
 
     private List<RestaurantLimitedDetails> limitedDetailsList;
@@ -64,6 +66,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
                 RestaurantLimitedDetails restaurant = limitedDetailsList.get(position);
                 // We can access the data within the views
                 Intent intent = new Intent(context, DetailActivity.class);
+                intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("restaurant", Parcels.wrap(restaurant));
                 context.startActivity(intent);
             }
