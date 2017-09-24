@@ -4,6 +4,7 @@ package com.example.palexis3.nearme.Fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,15 +34,11 @@ import retrofit2.Response;
  MyListFragement utilizes RecyclerView to populate individual restaurants.
  */
 
-public class MyListFragment extends Fragment {
+public class MyListFragment extends AppCompatActivity {
 
 
     private static final String TAG = "MyListFragment";
 
-    // used for Butterknife
-    private Unbinder unbinder;
-
-    private RestaurantClient restaurantService;
     private RestaurantListAdapter restaurantListAdapter;
     RecyclerView.LayoutManager mLayoutManager;
 
@@ -50,15 +47,11 @@ public class MyListFragment extends Fragment {
     RecyclerView recyclerView;
 
 
-    // newInstance constructor for creating fragment with arguments
-    public static MyListFragment newInstance(String title) {
-        MyListFragment fragmentFirst = new MyListFragment();
-        Bundle args = new Bundle();
-        args.putString("someTitle", title);
-        fragmentFirst.setArguments(args);
-        return fragmentFirst;
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.);
     }
-
 
     // Inflate the view for the fragment based on layout XML
     @Nullable
