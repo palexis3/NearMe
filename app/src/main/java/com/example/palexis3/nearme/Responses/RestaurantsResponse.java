@@ -21,6 +21,10 @@ public class RestaurantsResponse {
         restaurantLimitedDetailsList = new ArrayList<>();
     }
 
+    public List<RestaurantLimitedDetails> getRestaurantLimitedDetailsList() {
+        return restaurantLimitedDetailsList;
+    }
+
     public static RestaurantsResponse parseJSON(String response) {
         Gson gson = new GsonBuilder().create();
         RestaurantsResponse restaurantsResponse = gson.fromJson(response, RestaurantsResponse.class);

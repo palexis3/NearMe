@@ -2,6 +2,7 @@ package com.example.palexis3.nearme.Adapter;
 
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.example.palexis3.nearme.Models.RestaurantLimitedDetails;
 import com.example.palexis3.nearme.R;
 import com.example.palexis3.nearme.Utilities.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -21,11 +23,10 @@ import butterknife.ButterKnife;
 
 public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.ViewHolder> {
 
-    private List<RestaurantLimitedDetails> limitedDetailsList;
+    private List<RestaurantLimitedDetails> limitedDetailsList = new ArrayList<>();
     private Context context;
 
-    public RestaurantListAdapter(List<RestaurantLimitedDetails> limitedDetailsList, Context context) {
-        this.limitedDetailsList = limitedDetailsList;
+    public RestaurantListAdapter(Context context) {
         this.context = context;
     }
 
@@ -33,6 +34,18 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
         return context;
     }
 
+    // adding all restaurant list into the adapter
+    public void setRestaurantList(@Nullable List<RestaurantLimitedDetails> list) {
+        if (list == null) {
+            return;
+        }
+        limitedDetailsList.clear();
+        limitedDetailsList.addAll(list);
+        notifyDataSetChanged();
+    }
+
+
+    // creating view holder class as required by recyclerview for performance reasons
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.ivRestaurantImage)
