@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivRestaurantDetailImage"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_margin="3dp"
+        android:scaleType="fitXY"
+        android:foregroundGravity="center"
+        tools:src="@drawable/local_dining"/>
+
+    <TextView
+        android:id="@+id/tvRestaurantDetailName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivRestaurantDetailImage"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:layout_margin="5dp"
+        android:text="@string/temp"/>
+
+    <TextView
+        android:id="@+id/tvRestaurantDetailRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvRestaurantDetailName"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="8dp"
+        android:drawableRight="@drawable/star"
+        android:drawablePadding="3dp"/>
+
+    <TextView
+        android:id="@+id/tvRestaurantDetailContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvRestaurantDetailName"
+        android:layout_toRightOf="@id/tvRestaurantDetailRating"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="25dp"
+        android:text="@string/temp"/>
+
+    <TextView
+        android:id="@+id/tvRestaurantDetailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvRestaurantDetailRating"
+        android:layout_margin="7dp"
+        android:layout_marginLeft="10dp"
+        android:text="@string/temp"/>
+
+    <TextView
+        android:id="@+id/tvRestaurantDetailReviewLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:layout_below="@id/tvRestaurantDetailAddress"
+        android:layout_margin="5dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="18dp"
+        android:text="@string/reviews"/>
+
+    <TextView
+        android:id="@+id/tvRestaurantDetailReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/tvRestaurantDetailReviewLabel"
+        android:scrollbars="vertical"/>
+
+</RelativeLayout>

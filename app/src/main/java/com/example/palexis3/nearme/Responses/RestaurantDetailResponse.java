@@ -15,7 +15,9 @@ public class RestaurantDetailResponse {
     @SerializedName("result")
     Restaurant restaurant;
 
-    public RestaurantDetailResponse() {}
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
 
     public static RestaurantDetailResponse parseJSON(String response) {
         Gson gson = new GsonBuilder().create();

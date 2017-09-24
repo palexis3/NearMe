@@ -25,11 +25,20 @@ public class Restaurant {
     String formatted_address;
     String formatted_phone_number;
     String place_id;
-    double rating;
+    String name;
+    Double rating;
 
 
     // empty constructor needed by the Parceler library
     public Restaurant() {}
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getFormatted_address() {
         return formatted_address;
@@ -55,11 +64,11 @@ public class Restaurant {
         this.place_id = place_id;
     }
 
-    public double getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 

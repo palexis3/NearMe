@@ -2,6 +2,7 @@ package com.example.palexis3.nearme.Adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.palexis3.nearme.Activities.DetailActivity;
 import com.example.palexis3.nearme.Models.RestaurantLimitedDetails;
 import com.example.palexis3.nearme.R;
 import com.example.palexis3.nearme.Utilities.Utils;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -35,7 +39,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
 
 
     // creating view holder class as required by recyclerview for performance reasons
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         @BindView(R.id.ivRestaurantImage)
         ImageView image;
@@ -49,8 +53,21 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
         public ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+            view.setOnClickListener(this);
         }
 
+        // Handles the item being clicked
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition(); // gets item position
+            if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+                RestaurantLimitedDetails restaurant = limitedDetailsList.get(position);
+                // We can access the data within the views
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("restaurant", Parcels.wrap(restaurant));
+                context.startActivity(intent);
+            }
+        }
     }
 
     // inflating restaurant item layout from XML and returning the holder
