@@ -1,19 +1,37 @@
 package com.example.palexis3.nearme.Models;
 
+import com.google.gson.annotations.SerializedName;
+
+import org.parceler.Parcel;
+
 /**
-  Restaurant represents the items sent back from the json response
+  Restaurant represents restaurant info sent back from the json response
+  with more details.
  */
 
+@Parcel
 public class Restaurant {
-    
+
+    @SerializedName("reviews")
+    ArrayList<Reviews> reviewsArrayList;
+
+    @SerializedName("photos")
+    ArrayList<Photos> photosArrayList;
+
+    @SerializedName("geometry")
+    Geometry geometry;
+
     String formatted_address;
     String formatted_phone_number;
     String place_id;
-    String rating;
-    String photo;
-    ArrayList<Reviews> reviewsArrayList;
+    double rating;
     double lat;
     double lng;
+
+
+    // empty constructor needed by the Parceler library
+    public Restaurant() {
+    }
 
     public String getFormatted_address() {
         return formatted_address;
@@ -39,20 +57,20 @@ public class Restaurant {
         this.place_id = place_id;
     }
 
-    public String getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 
-    public String getPhoto() {
-        return photo;
+    public Geometry getGeometry() {
+        return geometry;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setGeometry(Geometry geometry) {
+        this.geometry = geometry;
     }
 
     public ArrayList<Reviews> getReviewsArrayList() {
@@ -61,6 +79,14 @@ public class Restaurant {
 
     public void setReviewsArrayList(ArrayList<Reviews> reviewsArrayList) {
         this.reviewsArrayList = reviewsArrayList;
+    }
+
+    public ArrayList<Photos> getPhotosArrayList() {
+        return photosArrayList;
+    }
+
+    public void setPhotosArrayList(ArrayList<Photos> photosArrayList) {
+        this.photosArrayList = photosArrayList;
     }
 
     public double getLat() {
