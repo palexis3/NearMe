@@ -131,8 +131,6 @@ public class DetailActivity extends AppCompatActivity {
                 reviews.setText("N/A");
             }
 
-
-
             String photo = String.format(
                     "https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference=%s&key=%s",
                     photo_reference,
