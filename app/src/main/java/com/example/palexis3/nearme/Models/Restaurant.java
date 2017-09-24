@@ -30,8 +30,7 @@ public class Restaurant {
 
 
     // empty constructor needed by the Parceler library
-    public Restaurant() {
-    }
+    public Restaurant() {}
 
     public String getFormatted_address() {
         return formatted_address;
