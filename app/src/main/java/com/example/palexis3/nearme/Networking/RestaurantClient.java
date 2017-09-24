@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.example.palexis3.nearme.Responses.RestaurantDetailResponse;
 import com.example.palexis3.nearme.Responses.RestaurantsResponse;
+import com.example.palexis3.nearme.Utilities.Utils;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -14,7 +15,6 @@ import rx.Observable;
 public class RestaurantClient {
 
     private static final String BASE_URL = "https://maps.googleapis.com/maps/api/place/";
-    private static final String GOOGLE_PLACES_API_KEY = "AIzaSyB-bpw0ollWA5AKpT11Y2CL2qPFs4kC_dk";
 
     private static RestaurantClient instance;
     private RestaurantService restaurantService;
@@ -38,10 +38,10 @@ public class RestaurantClient {
     }
 
     public Observable<RestaurantsResponse> getRestaurants() {
-        return restaurantService.getRestaurants(GOOGLE_PLACES_API_KEY);
+        return restaurantService.getRestaurants(Utils.getGooglePlacesApiKey());
     }
 
     public Observable<RestaurantDetailResponse> getRestaurant(@NonNull String place_id) {
-        return restaurantService.getRestaurant(place_id, GOOGLE_PLACES_API_KEY);
+        return restaurantService.getRestaurant(place_id, Utils.getGooglePlacesApiKey());
     }
 }

@@ -13,7 +13,7 @@ import com.example.palexis3.nearme.Fragments.MyListFragment;
 
 public class MyPagerAdapter extends FragmentPagerAdapter {
 
-    private static int NUM_ITEMS = 1;
+    private static int NUM_ITEMS = 2;
 
     public MyPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
