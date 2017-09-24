@@ -2,7 +2,6 @@ package com.example.palexis3.nearme.Adapter;
 
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import com.example.palexis3.nearme.Models.RestaurantLimitedDetails;
 import com.example.palexis3.nearme.R;
 import com.example.palexis3.nearme.Utilities.Utils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -23,25 +21,16 @@ import butterknife.ButterKnife;
 
 public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.ViewHolder> {
 
-    private List<RestaurantLimitedDetails> limitedDetailsList = new ArrayList<>();
+    private List<RestaurantLimitedDetails> limitedDetailsList;
     private Context context;
 
-    public RestaurantListAdapter(Context context) {
+    public RestaurantListAdapter(List<RestaurantLimitedDetails> limitedDetailsList, Context context) {
+        this.limitedDetailsList = limitedDetailsList;
         this.context = context;
     }
 
     private Context getContext() {
         return context;
-    }
-
-    // adding all restaurant list into the adapter
-    public void setRestaurantList(@Nullable List<RestaurantLimitedDetails> list) {
-        if (list == null) {
-            return;
-        }
-        limitedDetailsList.clear();
-        limitedDetailsList.addAll(list);
-        notifyDataSetChanged();
     }
 
 
@@ -89,9 +78,15 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
         name.setText(restaurant.getName());
 
         TextView rating = holder.rating;
-        rating.setText(restaurant.getRating());
+        if(restaurant.getRating() != null) {
+            rating.setText(restaurant.getRating());
+        } else {
+            rating.setText("N/A");
+        }
 
-        String photo_reference = restaurant.getPhotosArrayList().size() > 0 ? restaurant.getPhotosArrayList().get(0).getPhotoReference() : null;
+
+        String photo_reference = restaurant.getPhotosArrayList() != null && restaurant.getPhotosArrayList().size() > 0 ?
+                restaurant.getPhotosArrayList().get(0).getPhotoReference() : null;
 
         String photo = String.format(
                 "https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference=%s&key=%s",

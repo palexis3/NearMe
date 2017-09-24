@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,9 +16,6 @@ public class RestaurantsResponse {
     @SerializedName("results")
     List<RestaurantLimitedDetails> restaurantLimitedDetailsList;
 
-    public RestaurantsResponse() {
-        restaurantLimitedDetailsList = new ArrayList<>();
-    }
 
     public List<RestaurantLimitedDetails> getRestaurantLimitedDetailsList() {
         return restaurantLimitedDetailsList;
