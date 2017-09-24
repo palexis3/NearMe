@@ -25,8 +25,6 @@ public class Restaurant {
     String formatted_phone_number;
     String place_id;
     double rating;
-    double lat;
-    double lng;
 
 
     // empty constructor needed by the Parceler library
@@ -88,19 +86,4 @@ public class Restaurant {
         this.photosArrayList = photosArrayList;
     }
 
-    public double getLat() {
-        return lat;
-    }
-
-    public void setLat(double lat) {
-        this.lat = lat;
-    }
-
-    public double getLng() {
-        return lng;
-    }
-
-    public void setLng(double lng) {
-        this.lng = lng;
-    }
 }
