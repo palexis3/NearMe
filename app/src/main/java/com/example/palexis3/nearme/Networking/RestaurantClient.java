@@ -37,11 +37,11 @@ public class RestaurantClient {
         return instance;
     }
 
-    public Observable<RestaurantsResponse> getRestaurants(String Key) {
+    public Observable<RestaurantsResponse> getRestaurants() {
         return restaurantService.getRestaurants(GOOGLE_PLACES_API_KEY);
     }
 
-    public Observable<RestaurantDetailResponse> getRestaurant(@NonNull String place_id, String key) {
+    public Observable<RestaurantDetailResponse> getRestaurant(@NonNull String place_id) {
         return restaurantService.getRestaurant(place_id, GOOGLE_PLACES_API_KEY);
     }
 }
