@@ -2,5 +2,6 @@
     <string name="app_name">NearMe</string>
     <string name="temp">Temp String</string>
     <string name="reviews">Reviews</string>
+    <string name="map">Map</string>
     <string name="google_maps_api_key">AIzaSyBt08WxEypilTzyi2fQBm9OBIgzSt3uk2g</string>
 </resources>
