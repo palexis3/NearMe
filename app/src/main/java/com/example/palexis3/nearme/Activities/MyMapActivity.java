@@ -1,50 +1,42 @@
 package com.example.palexis3.nearme.Activities;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 
-import com.example.palexis3.nearme.Models.Restaurant;
 import com.example.palexis3.nearme.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.parceler.Parcels;
 
-public class MyMapActivity extends FragmentActivity implements OnMapReadyCallback {  
-    private static final String TAG = "MyMapActivity"; 
-    private SupportMapFragment mapFragment; 
-    private Restaurant res;  
-    @Override 
+public class MyMapActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    protected void onCreate(@Nullable Bundle savedInstanceState) {  
-        super.onCreate(savedInstanceState);  
-        // retrieve the content view that renders the map 
-        setContentView(R.layout.frag_map); 
-    }   
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    @Override 
+        // retrieve the content view that renders the map
+        setContentView(R.layout.activity_maps);
 
-    public void onMapReady(GoogleMap googleMap) { 
-        /**         Manipulates the map when it's available. 
-         *        The API invokes this callback when the map is ready to be used. 
-         */  
+        // Get the SupportMapFragment and request notification
+        // when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+    }
 
-        res = (Restaurant) Parcels.unwrap(getIntent().getParcelableExtra("res"));  
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        // Add a marker in Sydney, Australia,
+        // and move the map's camera to the same location.
+        LatLng sydney = new LatLng(-33.852, 151.211);
+        googleMap.addMarker(new MarkerOptions().position(sydney)
+                .title("Marker in Sydney"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
-        // Get the SupportMapFragment and request notification 
-        // when the map is ready to be used. 
-
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager() 
-         .findFragmentById(R.id.map); 
-
-        mapFragment.getMapAsync(this);  
-
-        //Add a marker for each of our items in restaurant details list 
-        // if(res != null) { 
-        LatLng obj = new LatLng(res.getGeometry().getLocation().getLatitude(), 
-                res.getGeometry().getLocation().getLongitude()); 
-        googleMap.addMarker(new MarkerOptions().position(obj) 
-                .title(res.getName())); 
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(obj)); 
-    } 
+    }
 }
