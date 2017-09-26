@@ -1,7 +1,7 @@
 package com.example.palexis3.nearme.Networking;
 
 
-import com.example.palexis3.nearme.Responses.RestaurantDetailResponse;
+import com.example.palexis3.nearme.Models.Result;
 import com.example.palexis3.nearme.Responses.RestaurantsResponse;
 
 import retrofit2.Call;
@@ -16,7 +16,7 @@ public interface RestaurantClient {
     );
 
     @GET("/maps/api/place/details/json")
-    Call<RestaurantDetailResponse> getRestaurant(
+    Call<Result> getRestaurant(
             @Query("placeid") String place_id,
             @Query("key") String key
     );
