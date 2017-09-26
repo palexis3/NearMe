@@ -6,10 +6,6 @@ import org.parceler.Parcel;
 
 import java.util.ArrayList;
 
-/**
- * Created by pa380 on 9/25/17.
- */
-
 @Parcel
 public class Result {
 

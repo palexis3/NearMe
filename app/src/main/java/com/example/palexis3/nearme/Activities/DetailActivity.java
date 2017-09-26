@@ -11,13 +11,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.palexis3.nearme.Models.Restaurant;
 import com.example.palexis3.nearme.Models.RestaurantLimitedDetails;
+import com.example.palexis3.nearme.Models.Result;
 import com.example.palexis3.nearme.Models.Reviews;
 import com.example.palexis3.nearme.Networking.RestaurantClient;
 import com.example.palexis3.nearme.Networking.ServiceGenerator;
 import com.example.palexis3.nearme.R;
-import com.example.palexis3.nearme.Responses.RestaurantDetailResponse;
+import com.example.palexis3.nearme.Responses.ResultResponse;
 import com.example.palexis3.nearme.Utilities.Utils;
 
 import org.parceler.Parcels;
@@ -56,7 +56,7 @@ public class DetailActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_restaurant_detail);
         ButterKnife.bind(this);
-        restaurantLimited = (RestaurantLimitedDetails) Parcels.unwrap(getIntent().getParcelableExtra("restaurant"));
+        restaurantLimited = Parcels.unwrap(getIntent().getParcelableExtra("restaurant"));
 
         // first get the details for this restaurant
         getRestaurantDetails();
@@ -67,21 +67,20 @@ public class DetailActivity extends AppCompatActivity {
         if(restaurantLimited != null) {
             // create an instance of our restaurant client
             RestaurantClient client = ServiceGenerator.createService(RestaurantClient.class);
-            Call<RestaurantDetailResponse> call = client.getRestaurant(restaurantLimited.getPlace_id(), Utils.getGooglePlacesApiKey());
-            call.enqueue(new Callback<RestaurantDetailResponse>() {
+            Call<ResultResponse> call = client.getRestaurant(restaurantLimited.getPlace_id(), Utils.getGooglePlacesApiKey());
+            call.enqueue(new Callback<ResultResponse>() {
                 @Override
-                public void onResponse(Call<RestaurantDetailResponse> call, Response<RestaurantDetailResponse> response) {
+                public void onResponse(Call<ResultResponse> call, Response<ResultResponse> response) {
                     if(response.isSuccessful()) {
-                        RestaurantDetailResponse restaurantDetailResponse = response.body();
-                        if(restaurantDetailResponse != null) {
-                            Restaurant restaurant = restaurantDetailResponse.getRestaurant();
-                            updateView(restaurant);
+                        ResultResponse resultResponse = response.body();
+                        if(resultResponse != null) {
+                            updateView(resultResponse.getResult());
                         }
                     }
                 }
 
                 @Override
-                public void onFailure(Call<RestaurantDetailResponse> call, Throwable t) {
+                public void onFailure(Call<ResultResponse> call, Throwable t) {
                     Log.d(TAG, t.getLocalizedMessage());
                     Toast.makeText(getApplicationContext(), "Couldn't get restaurant details", Toast.LENGTH_LONG).show();
                 }
@@ -92,7 +91,7 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
-    private void updateView(Restaurant restaurant) {
+    private void updateView(Result restaurant) {
 
         // check if we have a valid restaurant
         if(restaurant != null) {
