@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.palexis3.nearme.Models.RestaurantLimitedDetails;
 import com.example.palexis3.nearme.Models.Result;
 import com.example.palexis3.nearme.Models.Reviews;
 import com.example.palexis3.nearme.Networking.RestaurantClient;
@@ -35,7 +34,7 @@ public class DetailActivity extends AppCompatActivity {
     private static final String TAG = "DetailActivity";
 
 
-    private RestaurantLimitedDetails restaurantLimited;
+    private Result restaurantLimited;
 
     @BindView(R.id.ivRestaurantDetailImage)
     ImageView image;

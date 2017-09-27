@@ -1,6 +1,5 @@
 package com.example.palexis3.nearme.Models;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import org.parceler.Parcel;
@@ -14,10 +13,8 @@ import org.parceler.Parcel;
 public class Location {
 
     @SerializedName("lat")
-    @Expose
     private Double lat;
     @SerializedName("lng")
-    @Expose
     private Double lng;
 
     public Location(){}

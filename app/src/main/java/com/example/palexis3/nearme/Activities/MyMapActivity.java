@@ -5,11 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
-import com.example.palexis3.nearme.Models.RestaurantLimitedDetails;
+import com.example.palexis3.nearme.Models.Result;
 import com.example.palexis3.nearme.Networking.RestaurantClient;
 import com.example.palexis3.nearme.Networking.ServiceGenerator;
 import com.example.palexis3.nearme.R;
-import com.example.palexis3.nearme.Responses.RestaurantsResponse;
+import com.example.palexis3.nearme.Responses.ResultsResponse;
 import com.example.palexis3.nearme.Utilities.Utils;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -51,19 +51,19 @@ public class MyMapActivity extends FragmentActivity implements OnMapReadyCallbac
 
         // create an instance of our restaurant client
         RestaurantClient client = ServiceGenerator.createService(RestaurantClient.class);
-        Call<RestaurantsResponse> call = client.getRestaurants(Utils.getGooglePlacesApiKey());
-        call.enqueue(new Callback<RestaurantsResponse>() {
+        Call<ResultsResponse> call = client.getRestaurants(Utils.getGooglePlacesApiKey());
+        call.enqueue(new Callback<ResultsResponse>() {
             @Override
-            public void onResponse(Call<RestaurantsResponse> call, Response<RestaurantsResponse> response) {
+            public void onResponse(Call<ResultsResponse> call, Response<ResultsResponse> response) {
                 if(response.isSuccessful()) {
                     try {
-                        RestaurantsResponse sourceResponse = response.body();
-                        ArrayList<RestaurantLimitedDetails> restaurantsArrayList =
-                                new ArrayList<>(sourceResponse.getRestaurantLimitedDetailsList());
+                        ResultsResponse sourceResponse = response.body();
+                        ArrayList<Result> restaurantsArrayList =
+                                new ArrayList<>(sourceResponse.getResults());
 
                         // Add markers of restaurants to map
                         if(restaurantsArrayList != null && restaurantsArrayList.size() > 0) {
-                            for(RestaurantLimitedDetails res: restaurantsArrayList) {
+                            for(Result res: restaurantsArrayList) {
                                 
                                 LatLng latLng = new LatLng(res.getGeometry().getLocation().getLatitude(),
                                        res.getGeometry().getLocation().getLongitude());
@@ -84,7 +84,7 @@ public class MyMapActivity extends FragmentActivity implements OnMapReadyCallbac
                 }
             }
             @Override
-            public void onFailure(Call<RestaurantsResponse> call, Throwable t) {
+            public void onFailure(Call<ResultsResponse> call, Throwable t) {
                 Log.d(TAG, t.getLocalizedMessage());
             }
         });

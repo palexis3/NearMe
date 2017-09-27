@@ -12,11 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.palexis3.nearme.Adapter.RestaurantListAdapter;
-import com.example.palexis3.nearme.Models.RestaurantLimitedDetails;
+import com.example.palexis3.nearme.Models.Result;
 import com.example.palexis3.nearme.Networking.RestaurantClient;
 import com.example.palexis3.nearme.Networking.ServiceGenerator;
 import com.example.palexis3.nearme.R;
-import com.example.palexis3.nearme.Responses.RestaurantsResponse;
+import com.example.palexis3.nearme.Responses.ResultsResponse;
 import com.example.palexis3.nearme.Utilities.Utils;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ import retrofit2.Response;
 
 
 /**
- MyListFragement utilizes RecyclerView to populate individual restaurants.
+ MainActivity utilizes RecyclerView to populate individual restaurants.
  */
 
 public class MainActivity extends AppCompatActivity {
@@ -59,15 +59,15 @@ public class MainActivity extends AppCompatActivity {
 
         // create an instance of our restaurant client
         RestaurantClient client = ServiceGenerator.createService(RestaurantClient.class);
-        Call<RestaurantsResponse>  call = client.getRestaurants(Utils.getGooglePlacesApiKey());
-        call.enqueue(new Callback<RestaurantsResponse>() {
+        Call<ResultsResponse>  call = client.getRestaurants(Utils.getGooglePlacesApiKey());
+        call.enqueue(new Callback<ResultsResponse>() {
             @Override
-            public void onResponse(Call<RestaurantsResponse> call, Response<RestaurantsResponse> response) {
+            public void onResponse(Call<ResultsResponse> call, Response<ResultsResponse> response) {
                 if(response.isSuccessful()) {
 
-                    RestaurantsResponse sourceResponse = response.body();
-                    ArrayList<RestaurantLimitedDetails> restaurantsArrayList =
-                            new ArrayList<>(sourceResponse.getRestaurantLimitedDetailsList());
+                    ResultsResponse sourceResponse = response.body();
+                    ArrayList<Result> restaurantsArrayList =
+                            new ArrayList<>(sourceResponse.getResults());
 
                     if(restaurantsArrayList != null && restaurantsArrayList.size() > 0) {
 
@@ -77,14 +77,14 @@ public class MainActivity extends AppCompatActivity {
 
                         restaurantListAdapter = new RestaurantListAdapter(restaurantsArrayList, getApplicationContext());
 
-                        // Set RestaurantListAdapter as the adapter for RecyclerView.
+                        // Set restaurantListAdapter as the adapter for RecyclerView.
                         recyclerView.setAdapter(restaurantListAdapter);
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<RestaurantsResponse> call, Throwable t) {
+            public void onFailure(Call<ResultsResponse> call, Throwable t) {
                 Log.d(TAG, t.getLocalizedMessage());
             }
         });

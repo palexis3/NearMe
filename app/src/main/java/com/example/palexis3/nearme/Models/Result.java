@@ -18,10 +18,19 @@ public class Result {
     @SerializedName("geometry")
     Geometry geometry;
 
+    @SerializedName("formatted_address")
     String formatted_address;
+
+    @SerializedName("formatted_phone_number")
     String formatted_phone_number;
+
+    @SerializedName("place_id")
     String place_id;
+
+    @SerializedName("name")
     String name;
+
+    @SerializedName("rating")
     Double rating;
 
 

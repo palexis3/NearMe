@@ -1,8 +1,8 @@
 package com.example.palexis3.nearme.Networking;
 
 
-import com.example.palexis3.nearme.Responses.RestaurantsResponse;
 import com.example.palexis3.nearme.Responses.ResultResponse;
+import com.example.palexis3.nearme.Responses.ResultsResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -11,7 +11,7 @@ import retrofit2.http.Query;
 public interface RestaurantClient {
 
     @GET("/maps/api/place/nearbysearch/json?location=37.787698,-122.404288&radius=200&type=restaurant")
-    Call<RestaurantsResponse> getRestaurants(
+    Call<ResultsResponse> getRestaurants(
             @Query("key") String key
     );
 

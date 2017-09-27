@@ -12,13 +12,13 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.palexis3.nearme.Activities.DetailActivity;
-import com.example.palexis3.nearme.Models.RestaurantLimitedDetails;
+import com.example.palexis3.nearme.Models.Result;
 import com.example.palexis3.nearme.R;
 import com.example.palexis3.nearme.Utilities.Utils;
 
 import org.parceler.Parcels;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,10 +27,10 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.ViewHolder> {
 
-    private List<RestaurantLimitedDetails> limitedDetailsList;
+    private ArrayList<Result> limitedDetailsList;
     private Context context;
 
-    public RestaurantListAdapter(List<RestaurantLimitedDetails> limitedDetailsList, Context context) {
+    public RestaurantListAdapter(ArrayList<Result> limitedDetailsList, Context context) {
         this.limitedDetailsList = limitedDetailsList;
         this.context = context;
     }
@@ -63,7 +63,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
         public void onClick(View v) {
             int position = getAdapterPosition(); // gets item position
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-                RestaurantLimitedDetails restaurant = limitedDetailsList.get(position);
+                Result restaurant = limitedDetailsList.get(position);
                 // We can access the data within the views
                 Intent intent = new Intent(context, DetailActivity.class);
                 intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
@@ -92,14 +92,14 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         // get the specific restaurant
-        RestaurantLimitedDetails restaurant = limitedDetailsList.get(position);
+        Result restaurant = limitedDetailsList.get(position);
 
         TextView name = holder.name;
         name.setText(restaurant.getName());
 
         TextView rating = holder.rating;
         if(restaurant.getRating() != null) {
-            rating.setText(restaurant.getRating());
+            rating.setText(String.valueOf(restaurant.getRating()));
         } else {
             rating.setText("N/A");
         }
