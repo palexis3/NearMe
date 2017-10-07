@@ -1,7 +1,5 @@
 package com.example.palexis3.nearme.Models;
 
-import android.location.Location;
-
 import com.google.gson.annotations.SerializedName;
 
 import org.parceler.Parcel;
@@ -17,6 +15,7 @@ public class Geometry {
     @SerializedName("location")
     Location location;
 
+
     public Geometry(){};
 
     public Location getLocation() {
@@ -25,5 +24,9 @@ public class Geometry {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public String toString() {
+        return location.toString();
     }
 }

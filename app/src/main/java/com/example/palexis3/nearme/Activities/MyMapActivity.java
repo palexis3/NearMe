@@ -57,7 +57,9 @@ public class MyMapActivity extends FragmentActivity implements OnMapReadyCallbac
             public void onResponse(Call<ResultsResponse> call, Response<ResultsResponse> response) {
                 if(response.isSuccessful()) {
                     try {
+
                         ResultsResponse sourceResponse = response.body();
+
                         ArrayList<Result> restaurantsArrayList =
                                 new ArrayList<>(sourceResponse.getResults());
 
@@ -65,8 +67,13 @@ public class MyMapActivity extends FragmentActivity implements OnMapReadyCallbac
                         if(restaurantsArrayList != null && restaurantsArrayList.size() > 0) {
                             for(Result res: restaurantsArrayList) {
                                 
-                                LatLng latLng = new LatLng(res.getGeometry().getLocation().getLatitude(),
-                                       res.getGeometry().getLocation().getLongitude());
+                                LatLng latLng = new LatLng(res.getGeometry().getLocation().getLat(),
+                                       res.getGeometry().getLocation().getLng());
+                                String log = String.format("Latitude: %f, Longitude: %f", res.getGeometry().getLocation().getLat(),
+                                       res.getGeometry().getLocation().getLng());
+                                
+                                Log.d("RESULT", log);
+
                                 MarkerOptions markerOptions = new MarkerOptions();
                                 // position of restaurant
                                 markerOptions.position(latLng);
